@@ -1,0 +1,64 @@
+<odoo>
+  <data>
+
+    <record model ="ir.ui.view" id ="salesnotes_form">
+      <field name ="name"> Form view for Sales Notes</field>
+      <field name="model">salesnotes.salesnotes</field>
+      <field name="arch" type="xml">
+        <form string ="Sales Notes">
+          <sheet>
+            <group>
+                  <group>                    
+                    <field name ="partner_id"></field>
+                    <field name ="salestype"></field>
+                    <field name ="salesdate"></field>
+                    <field name ="salesperson"></field>
+                  </group>
+
+                  <group>
+                    <field name ="salesnotes"></field>
+                  </group>
+              </group>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="activity_ids" widget="mail_activity"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <record model ="ir.ui.view" id ="salesnotes_tree">
+      <field name="name">Tree view for Sales Notes</field>
+      <field name="model">salesnotes.salesnotes</field>
+      <field name="arch" type="xml">
+        <tree string="Sales Notes">
+          <field name ="salesdate"></field>        
+          <field name ="partner_id"></field>
+          <field name ="salestype"></field>
+          <field name ="salesnotes"></field>
+          <field name ="salesperson"></field>
+        </tree>
+      </field>      
+    </record>
+    <record id ="salesnotes_menu_action" model="ir.actions.act_window">
+      <field name ="name">Sales Notes </field>
+      <field name ="res_model">salesnotes.salesnotes</field>      
+      <field name ="view_mode">tree,form</field>
+      <field name ="domain">[]</field>
+      <field name ="help" type ="html">
+        <p class="o_view_nocontent_smiling_face"> Create the first Sales Notes </p>
+      </field>
+    </record>
+    <!-- Top menu item -->
+
+    <menuitem name="salesnotes" id="salesnotes_menu"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Notes" id="salesnotes_sales_menu" parent="salesnotes_menu" action="salesnotes_menu_action"/>
+
+
+  </data>
+</odoo>
